@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: carts
+  namespace: sockshop
+spec:
+  replicas: 2
+  selector:
+   matchLabels:
+     app: carts
+  template:
+   metadata: 
+     labels:
+      app: carts
+   spec:
+    containers:
+    - name: carts
+      image: likhith045/carts-core:latest
+      ports:
+       - containerPort: 7001 
+      envFrom:
+      - configMapRef:
+         name: carts-config
+     
+
+
+  

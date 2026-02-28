@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-mysql
+  namespace: sockshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping-mysql
+  template:
+    metadata:
+      labels:
+        app: shipping-mysql
+    spec:
+      containers:
+        - name: shipping-mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpass
+            - name: MYSQL_DATABASE
+              value: shipping
+            - name: MYSQL_USER
+              value: shippinguser
+            - name: MYSQL_PASSWORD
+              value: shippingpass
+          resources:
+            requests:
+              cpu: 200m
+              memory: 400Mi
+            limits:
+              cpu: 500m
+              memory: 800Mi
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          emptyDir: {}

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users
+  namespace: sockshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+       - name: users
+         image: likhith045/users-mysql:latest
+         ports:
+          - containerPort: 7001
+         envFrom:
+          - configMapRef:
+              name: mysql-config
+          - secretRef:
+              name: mysql-secret
+            

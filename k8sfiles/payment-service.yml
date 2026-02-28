@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment
+  namespace: sockshop
+spec:
+  selector:
+    app: payment
+  ports:
+   - port: 7001
+     targetPort: 7001
+  type: ClusterIP

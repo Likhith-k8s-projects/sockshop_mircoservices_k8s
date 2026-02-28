@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: carts-config
+  namespace: sockshop
+data: 
+  REDIS_HOST: "carts-redis"
+  REDIS_PORT: "6379"
+  

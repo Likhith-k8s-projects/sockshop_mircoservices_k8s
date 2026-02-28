@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  namespace: sockshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment
+  template:
+    metadata:
+      labels:
+        app: payment
+    spec:
+      containers:
+      - name: payment
+        image: likhith045/payment-mysql:latest
+        ports: 
+        - containerPort: 7001
+        env:
+        - name: DB_HOST
+          value: payment-mysql
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_NAME
+          value: payment
+        - name: DB_USER
+          value: paymentuser
+        - name: DB_PASSWORD
+          value: paymentpass

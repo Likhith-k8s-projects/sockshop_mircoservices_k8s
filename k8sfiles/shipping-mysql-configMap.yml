@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+  namespace: sockshop
+data:
+  MYSQL_DATABASE: shippingdb
+  MYSQL_USER: shippinguser

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-users
+  namespace: sockshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-users
+  template:
+    metadata:
+      labels:
+        app: mysql-users
+    spec:
+      containers:
+        - name: mysql-users
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpass
+            - name: MYSQL_DATABASE
+              value: users
+            - name: MYSQL_USER
+              value: users
+            - name: MYSQL_PASSWORD
+              value: userspass
+          resources:
+            requests:
+              cpu: 200m
+              memory: 400Mi
+            limits:
+              cpu: 500m
+              memory: 800Mi
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          emptyDir: {}
