@@ -1,6 +1,8 @@
 # sockshop_mircoservices_k8s
 Deployed Helidon-based Sockshop microservices application on Kubernetes cluster. Implemented service communication, MySQL database integration, environment configuration, and debugging of production-level issues like CrashLoopBackOff and 500 Internal Server errors.
+This deployment is based on the Helidon Sockshop microservices demo available at:
 
+https://github.com/helidon-sockshop/sockshop
 # Project overview
 This project deploys the Helidon-based Sockshop microservices application on Kubernetes.
 The application is an online store that sells socks and is based on the canonical SockShop Microservices Demo originally written and published under the Apache 2.0 license by Weaveworks.
